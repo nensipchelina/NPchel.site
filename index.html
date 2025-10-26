@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   .map(img => img.currentSrc || img.src);
   }
 
-  function openByIndex(i){
+function openByIndex(i){
     if (!images.length) collectImages();
     index = (i + images.length) % images.length;
     lbImg.src = images[index];
@@ -656,7 +656,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function next(){
     openByIndex(index + 1);
   }
-
+  
   // Делегируем клик по картинке в гриде
   if (grid) {
     grid.addEventListener('click', (e) => {

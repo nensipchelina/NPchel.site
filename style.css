@@ -45,7 +45,7 @@ a{ color:inherit; text-decoration:none; }
 #header .header-wrap{
   display:flex; justify-content:space-between; align-items:center;
   padding:18px 28px;
-  background: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.22);
   border-bottom: 1px solid transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;

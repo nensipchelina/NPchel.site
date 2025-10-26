@@ -491,70 +491,69 @@ h3{ font-size: clamp(18px, 2.8vw, 22px); }
 .burger.is-open span:nth-child(2) { opacity: 0; }
 .burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* навигация */
-.nav {display: flex; gap: 22px; align-items: center; }
+/* навигация (десктоп) */
+.nav{ display:flex; gap:22px; align-items:center; }
 
 /* === Mobile nav: full-screen translucent overlay === */
 @media (max-width: 860px){
-  /* бургер показываем, хедер поверх */
-  .burger{display:block; }
-  #header .header-wrap{ position: relative; z-index: 1001; }
+  /* бургер показываем, шапку держим над оверлеем */
+  .burger{ display:block; }
+  #header .header-wrap{ position:relative; z-index:1001; }
 
-  /* сам оверлей */
+  /* сам оверлей меню */
   .nav{
-    position: fixed;
-    inset: 0;                /* на весь экран */
-    top: 64px;               /* под шапкой (подгони под высоту твоего header) */
-    background: linear-gradient(
+    position:fixed;
+    left:0; right:0; bottom:0; top:64px;   /* подгони 64px под реальную высоту шапки */
+    background:linear-gradient(
       to bottom,
-      rgba(255, 236, 246, .88),   /* нежно беж-роз */
-      rgba(236, 222, 255, .88)    /* к фиолетовому */
+      rgba(255,236,246,.88),
+      rgba(236,222,255,.88)
     );
-    backdrop-filter: blur(8px) saturate(1.05);
-    -webkit-backdrop-filter: blur(8px) saturate(1.05);
-    padding: 16px 18px;
-    border-top: 1px solid rgba(0,0,0,.06);
+    backdrop-filter:blur(8px) saturate(1.05);
+    -webkit-backdrop-filter:blur(8px) saturate(1.05);
+    padding:16px 18px;
+    border-top:1px solid rgba(0,0,0,.06);
 
-    display: block;          /* вместо горизонтального flex */
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-8px);
-    transition: opacity .22s ease, transform .22s ease;
-    z-index: 1000;
+    display:block;            /* вместо горизонтального flex */
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-8px);
+    transition:opacity .22s ease, transform .22s ease;
+    z-index:1000;             /* ниже .header-wrap, выше контента */
   }
   .nav.is-open{
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
   }
 
-  /* список — в столбик, по центру, немного компактней */
+  /* список — колонкой */
   .menu-list{
-    list-style: none;
-    margin: 0;
-    padding: 6px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    list-style:none;
+    margin:0;
+    padding:6px 0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
   }
 
-  /* ссылки-плитки: чуть меньший шрифт, кликабельная зона */
+  /* ссылки-плитки */
   .menu-list a{
-    display: block;
-    text-align: center;
-    padding: 12px 14px;
-    font-weight: 600;
-    font-size: clamp(14px, 4.2vw, 16px); /* поменьше на мобилке */
-    color: #111;
-    background: rgba(255,255,255,.65);
-    border: 1px solid rgba(0,0,0,.06);
-    border-radius: 12px;
-    transition: transform .15s ease, background .15s ease;
+    display:block;
+    text-align:center;
+    padding:12px 14px;
+    font-weight:600;
+    font-size:clamp(14px, 4.2vw, 16px);
+    color:#111;
+    background:rgba(255,255,255,.65);
+    border:1px solid rgba(0,0,0,.06);
+    border-radius:12px;
+    transition:transform .15s ease, background .15s ease;
   }
-  .menu-list a:active{ transform: translateY(1px); }
+  .menu-list a:active{ transform:translateY(1px); }
 
   /* блокируем скролл страницы, когда меню открыто */
-  body.menu-open{ overflow: hidden; }
+  body.menu-open{ overflow:hidden; }
 }
 
 /* ===== Портфолио адаптив ===== */

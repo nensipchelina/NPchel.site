@@ -694,26 +694,30 @@ function openByIndex(i){
 })();
 </script>
 <script>
-(function(){
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('navbar');
-  if(!burger || !nav) return;
+  (function(){
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('navbar');
+    if(!burger || !nav) return;
 
-  burger.addEventListener('click', () => {
-    const open = burger.classList.toggle('is-open');
-    nav.classList.toggle('is-open', open);
-    document.body.classList.toggle('menu-open', open);
-    burger.setAttribute('aria-expanded', open);
-  });
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('is-open');
+      nav.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
 
-  nav.addEventListener('click', e=>{
-    if(e.target.closest('a')) {
-      burger.classList.remove('is-open');
-      nav.classList.remove('is-open');
-      document.body.classList.remove('menu-open');
-    }
-  });
-})();
-</script>
+    /* клик по ссылке — закрыть; клик по фону оверлея — тоже закрыть */
+    nav.addEventListener('click', e=>{
+      const linkClicked = !!e.target.closest('a');
+      const clickedBackdrop = e.target === nav;
+      if (linkClicked || clickedBackdrop){
+        burger.classList.remove('is-open');
+        nav.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+  </script>
 </body>
 </html>

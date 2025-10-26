@@ -448,3 +448,95 @@ body.dark-theme .form__input, body.dark-theme .form__textarea{ background:#15151
   .lb__btn{ font-size:38px; }
   .lb__close{ font-size:42px; }
 }
+/* === Fluid type === */
+html{
+  /* мягкая адаптация базового размера */
+  font-size: clamp(14px, 1.6vw, 16px);
+}
+h1{ font-size: clamp(26px, 4.6vw, 44px); }
+h2{ font-size: clamp(22px, 3.6vw, 30px); }
+h3{ font-size: clamp(18px, 2.8vw, 22px); }
+
+/* чуть плотнее общий вертикальный ритм на мобилке */
+@media (max-width: 480px){
+  :root{ --section-pad: 56px; }
+  section{ padding: var(--section-pad) 0; }
+}
+/* === Burger button === */
+.burger {
+  display: none;
+  width: 40px;
+  height: 32px;
+  position: relative;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.burger span {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 2px;
+  background: #000; /* чёрный */
+  border-radius: 2px;
+  transition: 0.25s;
+}
+.burger span:nth-child(1) { top: 8px; }
+.burger span:nth-child(2) { top: 15px; }
+.burger span:nth-child(3) { top: 22px; }
+
+.burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.is-open span:nth-child(2) { opacity: 0; }
+.burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* навигация */
+.nav { display: flex; gap: 22px; align-items: center; }
+
+/* адаптив */
+@media (max-width: 860px) {
+  .burger { display: block; }
+
+  .nav {
+    position: fixed;
+    left: 0; right: 0; top: 64px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s ease;
+    z-index: 1000;
+  }
+
+  .nav.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav a {
+    padding: 10px 6px;
+    font-weight: 600;
+  }
+
+  body.menu-open { overflow: hidden; } /* блокируем скролл страницы */
+}
+
+/* ===== Портфолио адаптив ===== */
+@media (max-width: 1080px) {
+  #portfolio .grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+}
+@media (max-width: 720px) {
+  #portfolio .grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  #portfolio .grid figure { aspect-ratio: 3/4; border-radius: 10px; }
+}
+@media (max-width: 380px) {
+  #portfolio .grid { gap: 4px; }
+  #portfolio .grid figure { aspect-ratio: 3/4; }
+}
